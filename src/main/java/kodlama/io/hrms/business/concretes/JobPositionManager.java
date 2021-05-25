@@ -1,6 +1,8 @@
 package kodlama.io.hrms.business.concretes;
 
+import kodlama.io.hrms.business.abstracts.JobPositionCheckService;
 import kodlama.io.hrms.business.abstracts.JobPositionService;
+import kodlama.io.hrms.core.utilities.results.*;
 import kodlama.io.hrms.dataAccess.abstracts.JobPositionDao;
 import kodlama.io.hrms.entities.concretes.JobPosition;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,20 +14,26 @@ import java.util.List;
 public class JobPositionManager implements JobPositionService {
 
     private JobPositionDao jobPositionDao;
+    private JobPositionCheckService jobPositionCheckService;
 
     @Autowired
-    public JobPositionManager(JobPositionDao jobPositionDao) {
+    public JobPositionManager(JobPositionDao jobPositionDao, JobPositionCheckService jobPositionCheckService) {
         this.jobPositionDao = jobPositionDao;
+        this.jobPositionCheckService = jobPositionCheckService;
     }
 
     @Override
-    public List<JobPosition> getAll() {
-        return this.jobPositionDao.findAll();
+    public DataResult<List<JobPosition>> getAll() {
+        return new SuccessDataResult<List<JobPosition>>
+                (this.jobPositionDao.findAll(), "Job Positions Listed.");
     }
 
     @Override
-    public void add(JobPosition jobPosition) {
+    public Result add(JobPosition jobPosition) {
+        if (this.jobPositionCheckService.checkJobPosition(jobPosition).isSuccess() == false) {
+            return this.jobPositionCheckService.checkJobPosition(jobPosition);
+        }
         this.jobPositionDao.save(jobPosition);
+        return new SuccessResult("Job Position added successfully");
     }
-
 }
