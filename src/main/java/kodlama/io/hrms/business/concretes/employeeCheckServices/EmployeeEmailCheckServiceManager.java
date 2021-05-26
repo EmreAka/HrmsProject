@@ -9,7 +9,6 @@ import kodlama.io.hrms.entities.concretes.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class EmployeeEmailCheckServiceManager implements EmployeeCheckService {
@@ -17,18 +16,6 @@ public class EmployeeEmailCheckServiceManager implements EmployeeCheckService {
     @Autowired
     private EmployeeDao employeeDao;
 
-/*    @Override
-    public Result checkEmployee(Employee employee) {
-        List<Employee> employees = this.employeeDao.findAll();
-        for (Employee emp : employees) {
-            if (emp.getEmail().equals(employee.getEmail())) {
-                return new ErrorResult("This email already exists. Please try another one.");
-            }
-        }
-
-        return new SuccessResult();
-    }
-}*/
     @Override
     public Result checkEmployee(Employee employee) {
         if (this.employeeDao.existsByEmail(employee.getEmail())) {
