@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
 public class EmailValidatorManager implements EmailValidator {
     @Override
     public boolean isEmailValidated(User user) {
-        return false;
+        return true;
     }
 }
