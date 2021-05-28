@@ -25,19 +25,19 @@ public class JobController {
         return this.jobService.add(job);
     }
 
-    @GetMapping("/getAllActiveJobs")
+    @GetMapping("/findAllByActiveTrue")
     public DataResult<List<Job>> findAllByActiveTrue() {
         return this.jobService.findAllByActiveTrue();
     }
 
-    @GetMapping("/getAllSortedByCreatedTimes")
-    public DataResult<List<Job>> getAllSorted() {
-        return this.jobService.getAllSorted();
+    @GetMapping("/findAllByEmployerIdAndActiveTrue")
+    public DataResult<List<Job>> findAllByEmployerIdAndActiveTrue(@RequestParam int employerId) {
+        return this.jobService.findAllByEmployerIdAndActiveTrue(employerId);
     }
 
-    @GetMapping("/getAllByEmployer")
-    public DataResult<List<Job>> findAllByEmployerId(@RequestParam int employerId) {
-        return this.jobService.findAllByEmployerId(employerId);
-    }
+    @GetMapping("/findAllByActiveTrueOrderByCreatedTimeDesc")
+    public DataResult<List<Job>> findAllByActiveTrueOrderByCreatedTimeDesc() {
+        return this.jobService.findAllByActiveTrueOrderByCreatedTimeDesc();
 
+    }
 }

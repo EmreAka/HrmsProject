@@ -34,13 +34,12 @@ public class JobManager implements JobService {
     }
 
     @Override
-    public DataResult<List<Job>> getAllSorted() {
-        Sort sort = Sort.by(Sort.Direction.DESC, "createdTime");
-        return new SuccessDataResult<List<Job>>(this.jobDao.findAll(sort), "Jobs listed by created times.");
+    public DataResult<List<Job>> findAllByEmployerIdAndActiveTrue(int employerId) {
+        return new SuccessDataResult<List<Job>>(this.jobDao.findAllByEmployer_IdAndActiveTrue(employerId), "Jobs listed by employer.");
     }
 
     @Override
-    public DataResult<List<Job>> findAllByEmployerId(int employerId) {
-        return new SuccessDataResult<List<Job>>(this.jobDao.findAllByEmployer_Id(employerId), "Jobs listed by employer.");
+    public DataResult<List<Job>> findAllByActiveTrueOrderByCreatedTimeDesc() {
+        return new SuccessDataResult<List<Job>>(this.jobDao.findAllByActiveTrueOrderByCreatedTimeDesc(), "Listed by created times.");
     }
 }

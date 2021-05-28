@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface JobDao extends JpaRepository<Job, Integer> {
     List<Job> findAllByActiveTrue();
-    List<Job> findAllByEmployer_Id(int employerId);
+    List<Job> findAllByEmployer_IdAndActiveTrue(int employerId);
+    List<Job> findAllByActiveTrueOrderByCreatedTimeDesc();
 }
