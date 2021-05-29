@@ -1,5 +1,6 @@
 package kodlama.io.hrms.business.concretes;
 
+import kodlama.io.hrms.business.abstracts.JobCheckService;
 import kodlama.io.hrms.business.abstracts.JobService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.Result;
@@ -17,6 +18,9 @@ public class JobManager implements JobService {
     @Autowired
     private JobDao jobDao;
 
+    @Autowired
+    private JobCheckService[] jobCheckServices;
+
     @Override
     public DataResult<List<Job>> getAll() {
         return new SuccessDataResult<List<Job>>(this.jobDao.findAll(), "Jobs listed successfully.");
@@ -24,6 +28,11 @@ public class JobManager implements JobService {
 
     @Override
     public Result add(Job job) {
+        for (JobCheckService jobCheckService : jobCheckServices) {
+            if (jobCheckService.checkJob(job).isSuccess() == false) {
+                return jobCheckService.checkJob(job);
+            }
+        }
         this.jobDao.save(job);
         return new SuccessResult("Job added successfully.");
     }
@@ -40,6 +49,6 @@ public class JobManager implements JobService {
 
     @Override
     public DataResult<List<Job>> findAllByActiveTrueOrderByCreatedTimeDesc() {
-        return new SuccessDataResult<List<Job>>(this.jobDao.findAllByActiveTrueOrderByCreatedTimeDesc(), "Listed by created times.");
+        return new SuccessDataResult<List<Job>>(this.jobDao.findAllByActiveTrueOrderByCreatedTimeDesc(), "Jobs listed by created times.");
     }
 }

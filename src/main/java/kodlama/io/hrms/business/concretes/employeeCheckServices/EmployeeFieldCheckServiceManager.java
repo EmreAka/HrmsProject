@@ -17,7 +17,7 @@ public class EmployeeFieldCheckServiceManager implements EmployeeCheckService {
         if (employee.getEmail().isEmpty() || employee.getPassword().isEmpty() ||
                 employee.getFirstName().isEmpty() ||
                 employee.getLastName().isEmpty() || employee.getNationalId().isEmpty() ||
-                String.valueOf(employee.getBirthYear().getYear()).isEmpty()) {
+                employee.getBirthYear() == null) {
             return new ErrorResult("You have to fill all of slots.");
         }
 
