@@ -2,14 +2,10 @@ package kodlama.io.hrms.business.concretes;
 
 import kodlama.io.hrms.business.abstracts.JobCheckService;
 import kodlama.io.hrms.business.abstracts.JobService;
-import kodlama.io.hrms.core.utilities.results.DataResult;
-import kodlama.io.hrms.core.utilities.results.Result;
-import kodlama.io.hrms.core.utilities.results.SuccessDataResult;
-import kodlama.io.hrms.core.utilities.results.SuccessResult;
+import kodlama.io.hrms.core.utilities.results.*;
 import kodlama.io.hrms.dataAccess.abstracts.JobDao;
 import kodlama.io.hrms.entities.concretes.Job;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,6 +51,9 @@ public class JobManager implements JobService {
     @Override
     public Result setValue(int id, boolean value) {
         Job job = this.jobDao.findById(id).get();
+        if (job == null) {
+            return new ErrorResult("There is no job which has that id number.");
+        }
         job.setActive(value);
         this.jobDao.save(job);
         return new SuccessResult("Value setted to " + value + " successfully.");
