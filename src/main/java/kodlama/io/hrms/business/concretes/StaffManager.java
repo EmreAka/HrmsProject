@@ -11,6 +11,6 @@ public class StaffManager implements StaffService {
 
     @Override
     public boolean validateEmployer() {
-        return false;
+        return true;
     }
 }
