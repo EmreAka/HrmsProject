@@ -41,8 +41,8 @@ public class JobController {
 
     }
 
-    @PostMapping("/setValue")
-    public Result setValue(int id, boolean value) {
+    @PutMapping("/setValue")
+    public Result setValue(@RequestParam int id,@RequestParam boolean value) {
         return this.jobService.setValue(id, value);
     }
 }

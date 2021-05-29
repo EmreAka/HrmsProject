@@ -54,7 +54,7 @@ public class JobManager implements JobService {
 
     @Override
     public Result setValue(int id, boolean value) {
-        Job job = this.jobDao.findByIdAndActiveTrue(id);
+        Job job = this.jobDao.findById(id).get();
         job.setActive(value);
         this.jobDao.save(job);
         return new SuccessResult("Value setted to " + value + " successfully.");
