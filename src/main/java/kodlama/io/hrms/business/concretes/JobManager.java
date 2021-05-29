@@ -51,4 +51,12 @@ public class JobManager implements JobService {
     public DataResult<List<Job>> findAllByActiveTrueOrderByCreatedTimeDesc() {
         return new SuccessDataResult<List<Job>>(this.jobDao.findAllByActiveTrueOrderByCreatedTimeDesc(), "Jobs listed by created times.");
     }
+
+    @Override
+    public Result setValue(int id, boolean value) {
+        Job job = this.jobDao.findByIdAndActiveTrue(id);
+        job.setActive(value);
+        this.jobDao.save(job);
+        return new SuccessResult("Value setted to " + value + " successfully.");
+    }
 }

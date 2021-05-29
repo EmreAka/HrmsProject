@@ -40,4 +40,9 @@ public class JobController {
         return this.jobService.findAllByActiveTrueOrderByCreatedTimeDesc();
 
     }
+
+    @PostMapping("/setValue")
+    public Result setValue(int id, boolean value) {
+        return this.jobService.setValue(id, value);
+    }
 }
