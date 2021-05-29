@@ -1,5 +1,6 @@
 package kodlama.io.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +23,7 @@ public class Employer extends User{
     private String webSite;
     @Column(name = "phone_number")
     private String phoneNumber;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "employer")
     private List<Job> jobs;
 }

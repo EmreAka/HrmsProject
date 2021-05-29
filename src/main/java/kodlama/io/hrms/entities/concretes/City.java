@@ -1,5 +1,6 @@
 package kodlama.io.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,7 +22,7 @@ public class City {
     int id;
     @Column(name = "city_name")
     String cityName;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "city")
     private List<Job> jobs;
 }
