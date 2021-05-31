@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Data
@@ -22,6 +24,8 @@ public class JobPosition {
     @Column(name = "id")
     private int id;
     @Column(name = "position")
+    @NotBlank
+    @NotEmpty
     private String position;
 
     @OneToMany(mappedBy = "jobPosition")
