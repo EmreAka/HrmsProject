@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -19,27 +21,32 @@ public class Job {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-//    @Column(name = "job_position_id")
-//    private int jobPositionId; //this is going to be removed here...
     @Column(name = "description")
+    @NotBlank
+    @NotEmpty
     private String description;
-//    @Column(name = "city_id")
-//    private int cityId; //this is going to be removed here...
     @Column(name = "max_salary")
     private int maxSalary;
     @Column(name = "min_salary")
     private int minSalary;
     @Column(name = "open_positions")
+    @NotBlank
+    @NotEmpty
     private int openPositions;
     @Column(name = "latest_apply_time")
+    @NotBlank
+    @NotEmpty
     private LocalDate latestApplyTime;
     @Column(name = "is_active")
+    @NotBlank
+    @NotEmpty
     private boolean active;
     @Column(name = "created_time")
+    @NotBlank
+    @NotEmpty
     @Temporal(TemporalType.DATE)
     private Date createdTime;
-//    @Column(name = "employer_id")
-//    private int employerId; //this is going to be removed here...
+
     //many to one
     @ManyToOne
     @JoinColumn(name = "job_position_id")
