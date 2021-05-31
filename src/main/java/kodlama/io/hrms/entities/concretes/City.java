@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Data
@@ -19,9 +21,11 @@ public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    int id;
+    private int id;
     @Column(name = "city_name")
-    String cityName;
+    @NotEmpty
+    @NotBlank
+    private String cityName;
     @JsonIgnore
     @OneToMany(mappedBy = "city")
     private List<Job> jobs;
