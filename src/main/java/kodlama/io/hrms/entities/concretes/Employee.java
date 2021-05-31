@@ -32,7 +32,5 @@ public class Employee extends User{
     @NotEmpty
     private String nationalId;
     @Column(name = "birth_year")
-    @NotBlank
-    @NotEmpty
     private LocalDate birthYear;
 }

@@ -30,20 +30,12 @@ public class Job {
     @Column(name = "min_salary")
     private int minSalary;
     @Column(name = "open_positions")
-    @NotBlank
-    @NotEmpty
     private int openPositions;
     @Column(name = "latest_apply_time")
-    @NotBlank
-    @NotEmpty
     private LocalDate latestApplyTime;
     @Column(name = "is_active")
-    @NotBlank
-    @NotEmpty
     private boolean active;
     @Column(name = "created_time")
-    @NotBlank
-    @NotEmpty
     @Temporal(TemporalType.DATE)
     private Date createdTime;
 
