@@ -14,9 +14,6 @@ public class JobManager implements JobService {
     @Autowired
     private JobDao jobDao;
 
-    @Autowired
-    private JobCheckService[] jobCheckServices;
-
     @Override
     public DataResult<List<Job>> getAll() {
         return new SuccessDataResult<List<Job>>(this.jobDao.findAll(), "Jobs listed successfully.");
@@ -24,11 +21,6 @@ public class JobManager implements JobService {
 
     @Override
     public Result add(Job job) {
-        for (JobCheckService jobCheckService : jobCheckServices) {
-            if (jobCheckService.checkJob(job).isSuccess() == false) {
-                return jobCheckService.checkJob(job);
-            }
-        }
         this.jobDao.save(job);
         return new SuccessResult("Job added successfully.");
     }
