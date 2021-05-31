@@ -1,6 +1,5 @@
 package kodlama.io.hrms.business.concretes;
 
-import kodlama.io.hrms.business.abstracts.JobCheckService;
 import kodlama.io.hrms.business.abstracts.JobService;
 import kodlama.io.hrms.core.utilities.results.*;
 import kodlama.io.hrms.dataAccess.abstracts.JobDao;
