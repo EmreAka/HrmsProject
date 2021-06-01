@@ -1,12 +1,12 @@
 package kodlama.io.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -14,13 +14,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "cvs")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "employee"})
 public class Cv {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "id")
    private int id;
-   @Column(name = "employee_id")
-   private int employeeId;
+//   @Column(name = "employee_id")
+//   private int employeeId;
    @Column(name = "photo")
    private String photo;
    @Column(name = "github_link")
@@ -35,6 +36,10 @@ public class Cv {
    private boolean active;
    @Column(name = "latest_update_date")
    private LocalDate latestUpdateDate;
+
+   @ManyToOne
+   @JoinColumn(name = "employee_id")
+   private Employee employee;
 
    @OneToMany(mappedBy = "cv")
    private List<Education> educations;
