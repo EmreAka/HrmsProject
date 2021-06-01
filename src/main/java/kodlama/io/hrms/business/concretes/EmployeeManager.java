@@ -1,7 +1,7 @@
 package kodlama.io.hrms.business.concretes;
 
-import kodlama.io.hrms.business.abstracts.EmployeeService;
 import kodlama.io.hrms.business.abstracts.EmployeeCheckService;
+import kodlama.io.hrms.business.abstracts.EmployeeService;
 import kodlama.io.hrms.core.utilities.results.*;
 import kodlama.io.hrms.dataAccess.abstracts.EmployeeDao;
 import kodlama.io.hrms.entities.concretes.Employee;
@@ -12,13 +12,13 @@ import java.util.List;
 @Service
 public class EmployeeManager implements EmployeeService {
 
-    private EmployeeCheckService[] employeeCheckServices;
     private EmployeeDao employeeDao;
+    private EmployeeCheckService employeeCheckService;
 
     @Autowired
-    public EmployeeManager(EmployeeDao employeeDao, EmployeeCheckService[] employeeCheckServices) {
+    public EmployeeManager(EmployeeDao employeeDao, EmployeeCheckService employeeCheckService) {
         this.employeeDao = employeeDao;
-        this.employeeCheckServices = employeeCheckServices;
+        this.employeeCheckService = employeeCheckService;
     }
 
     @Override
@@ -28,10 +28,8 @@ public class EmployeeManager implements EmployeeService {
 
     @Override
     public Result add(Employee employee) {
-        for (EmployeeCheckService employeeCheckService : employeeCheckServices) {
-            if (employeeCheckService.checkEmployee(employee).isSuccess() == false) {
-                return employeeCheckService.checkEmployee(employee);
-            }
+        if (!this.employeeCheckService.checkEmployee(employee).isSuccess()) {
+            return this.employeeCheckService.checkEmployee(employee);
         }
         this.employeeDao.save(employee);
         return new SuccessResult("Added successfully");
