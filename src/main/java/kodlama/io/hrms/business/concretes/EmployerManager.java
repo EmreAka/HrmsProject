@@ -17,12 +17,12 @@ import java.util.List;
 public class EmployerManager implements EmployerService {
 
     private EmployerDao employerDao;
-    private EmployerCheckService[] employerCheckServices;
+    private EmployerCheckService employerCheckService;
 
     @Autowired
-    public EmployerManager(EmployerDao employerDao, EmployerCheckService[] employerCheckServices) {
+    public EmployerManager(EmployerDao employerDao, EmployerCheckService employerCheckService) {
         this.employerDao = employerDao;
-        this.employerCheckServices = employerCheckServices;
+        this.employerCheckService = employerCheckService;
     }
 
     @Override
@@ -32,10 +32,8 @@ public class EmployerManager implements EmployerService {
 
     @Override
     public Result add(Employer employer) {
-        for (EmployerCheckService employerCheckService : employerCheckServices) {
-            if (employerCheckService.checkEmployer(employer).isSuccess() == false) {
-                return employerCheckService.checkEmployer(employer);
-            }
+        if (!this.employerCheckService.checkEmployer(employer).isSuccess()) {
+            return this.employerCheckService.checkEmployer(employer);
         }
         this.employerDao.save(employer);
         return new SuccessResult("Employer added successfully");
