@@ -179,7 +179,7 @@ ALTER TABLE public.activision_employers
 
 
 ALTER TABLE public.cvs
-    ADD FOREIGN KEY (id)
+    ADD FOREIGN KEY (employee_id)
     REFERENCES public.employees (employee_id)
     NOT VALID;
 
