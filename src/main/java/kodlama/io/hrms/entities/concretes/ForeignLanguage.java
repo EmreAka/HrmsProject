@@ -5,8 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Data
@@ -20,10 +24,14 @@ public class ForeignLanguage {
     @Column(name = "id")
     private int id;
     @Column(name = "language_name")
+    @NotBlank
+    @NotEmpty
     private String languageName;
     @Column(name = "language_level")
+    @NotNull
     private char languageLevel;
     @Column(name = "created_date")
+    @CreationTimestamp
     private LocalDate createdDate;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.tomcat.jni.Local;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -41,9 +43,8 @@ public class Job {
     @NotNull
     private boolean active;
     @Column(name = "created_time")
-    @Temporal(TemporalType.DATE)
-    @NotNull
-    private Date createdTime;
+    @CreationTimestamp
+    private LocalDate createdTime;
 
     //many to one
     @ManyToOne
