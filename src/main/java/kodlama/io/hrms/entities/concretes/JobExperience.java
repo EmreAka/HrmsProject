@@ -1,6 +1,7 @@
 package kodlama.io.hrms.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,18 +14,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "job_experiences")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "cv"})
 public class JobExperience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-//    @Column(name = "cv_id")
-//    private int cvId;
     @Column(name = "workplace_name")
     private String workplaceName;
-//    @Column(name = "job_position_id")
-//    private int jobPositionId;
     @Column(name = "begin_date")
     private LocalDate beginDate;
     @Column(name = "finish_date")
@@ -32,6 +28,7 @@ public class JobExperience {
     @Column(name = "created_date")
     private LocalDate createdDate;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne
     @JoinColumn(name = "cv_id")
     private Cv cv;

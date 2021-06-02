@@ -14,14 +14,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "cvs")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "employee"})
 public class Cv {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "id")
    private int id;
-//   @Column(name = "employee_id")
-//   private int employeeId;
    @Column(name = "photo")
    private String photo;
    @Column(name = "github_link")

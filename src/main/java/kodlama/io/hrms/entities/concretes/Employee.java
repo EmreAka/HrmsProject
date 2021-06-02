@@ -1,6 +1,8 @@
 package kodlama.io.hrms.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @PrimaryKeyJoinColumn(name = "employee_id")
 @Table(name = "employees")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "cvs"})
 public class Employee extends User{
     @Column(name = "first_name")
     @NotBlank
@@ -35,6 +38,7 @@ public class Employee extends User{
     @NotNull
     private LocalDate birthYear;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "employee")
     private List<Cv> cvs;
 }
