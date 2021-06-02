@@ -4,8 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -28,9 +31,12 @@ public class Cv {
    @Column(name = "description")
    private String description;
    @Column(name = "created_date")
+   @CreationTimestamp
    private LocalDate createdDate;
    @Column(name = "is_active")
+   @NotNull
    private boolean active;
+   @UpdateTimestamp
    @Column(name = "latest_update_date")
    private LocalDate latestUpdateDate;
 

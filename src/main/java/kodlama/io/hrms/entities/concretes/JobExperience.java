@@ -5,8 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Data
@@ -20,12 +24,16 @@ public class JobExperience {
     @Column(name = "id")
     private int id;
     @Column(name = "workplace_name")
+    @NotBlank
+    @NotEmpty
     private String workplaceName;
     @Column(name = "begin_date")
+    @NotNull
     private LocalDate beginDate;
     @Column(name = "finish_date")
     private LocalDate finishDate;
     @Column(name = "created_date")
+    @CreationTimestamp
     private LocalDate createdDate;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
