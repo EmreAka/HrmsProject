@@ -34,6 +34,11 @@ public class CvController {
         return this.cvService.getAll();
     }
 
+    @GetMapping("/findAllByEmployeeId")
+    public DataResult<List<Cv>> findAllByEmployeeId(@RequestParam int employeeId) {
+        return this.cvService.findAllByEmployeeId(employeeId);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDataResult<Object> handleValidationException(MethodArgumentNotValidException exceptions) {

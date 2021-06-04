@@ -9,4 +9,5 @@ import java.util.List;
 public interface CvService {
     Result add(Cv cv);
     DataResult<List<Cv>> getAll();
+    DataResult<List<Cv>> findAllByEmployeeId(int employeeId);
 }

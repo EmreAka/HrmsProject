@@ -28,4 +28,9 @@ public class CvManager implements CvService {
     public DataResult<List<Cv>> getAll() {
         return new SuccessDataResult<List<Cv>>(this.cvDao.findAll(), "Cvs listed successfully");
     }
+
+    @Override
+    public DataResult<List<Cv>> findAllByEmployeeId(int employeeId) {
+        return new SuccessDataResult<List<Cv>>(this.cvDao.findAllByEmployee_Id(employeeId), "Cvs listed successfully");
+    }
 }
