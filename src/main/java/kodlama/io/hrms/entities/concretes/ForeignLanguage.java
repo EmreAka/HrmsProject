@@ -8,9 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Data
@@ -29,7 +27,9 @@ public class ForeignLanguage {
     private String languageName;
     @Column(name = "language_level")
     @NotNull
-    private char languageLevel;
+    @Max(5)
+    @Min(1)
+    private int languageLevel;
     @Column(name = "created_date")
     @CreationTimestamp
     private LocalDate createdDate;
