@@ -35,6 +35,11 @@ public class JobExperienceController {
         return this.jobExperienceService.getAll();
     }
 
+    @GetMapping("/findAllByCvIdOrderByFinishDateDesc")
+    public DataResult<List<JobExperience>> findAllByCvIdOrderByFinishDateDesc(int cvId) {
+        return this.jobExperienceService.findAllByCvIdOrderByFinishDateDesc(cvId);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDataResult<Object> handleValidationException(MethodArgumentNotValidException exceptions) {
