@@ -41,10 +41,11 @@ public class CvController {
         return this.cvService.findAllByEmployeeId(employeeId);
     }
 
-    @PostMapping("/uploadPhoto")
-    public ResponseEntity<?> uploadPhoto(@RequestParam(name = "id") Integer id, @RequestParam(name = "filePath") String filePath) {
-        return ResponseEntity.ok(this.cvService.uploadPhoto(id, filePath));
+    @PutMapping("/uploadImage")
+    public Result uploadPhoto(@RequestBody MultipartFile file,@RequestParam int cvId) {
+        return this.cvService.uploadPhoto(file, cvId);
     }
+
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

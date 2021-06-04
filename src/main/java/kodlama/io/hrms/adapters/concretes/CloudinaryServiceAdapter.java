@@ -2,6 +2,10 @@ package kodlama.io.hrms.adapters.concretes;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import kodlama.io.hrms.adapters.abstracts.CloudinaryService;
+import kodlama.io.hrms.core.utilities.results.DataResult;
+import kodlama.io.hrms.core.utilities.results.ErrorDataResult;
+import kodlama.io.hrms.core.utilities.results.SuccessDataResult;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,31 +13,25 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 @Service
-public class CloudinaryServiceAdapter {
+public class CloudinaryServiceAdapter implements CloudinaryService {
 
-    @SuppressWarnings("unchecked")
-    public Map<String, Object> upload(File file) {
+    @Override
+    public DataResult<?> uploadPhoto(MultipartFile file) {
         Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-                "cloud_name", "emreaka",
-                "api_key", "281473766344166",
-                "api_secret", "EaaFNJek7NNh7ghVtFGBLQjrm3A"));
-        try {
-            @SuppressWarnings("rawtypes")
-            Map params = ObjectUtils.asMap(
-                    "folder", "cv/photos/",
-                    "public_id", null,
-                    "overwrite", true,
-                    "notification_url", null,
-                    "resource_type", "image"
-            );
-            Map<String, Object> uploadResult = cloudinary.uploader().upload(file, params);
-            return uploadResult;
-            //System.out.println(uploadResult.get("secure_url"));
-        } catch (IOException e) {
+                "cloud_name", "x",
+                "api_key", "x",
+                "api_secret", "x"));
+
+        try{
+            Map cloudinaryUploader = cloudinary.uploader()
+                    .upload(file.getBytes()
+                            ,ObjectUtils.emptyMap());
+            return new SuccessDataResult<Map>(cloudinaryUploader);
+        }
+
+        catch (IOException e){
             e.printStackTrace();
         }
-        return ObjectUtils.emptyMap();
+        return new ErrorDataResult<Map>();
     }
-
-
 }

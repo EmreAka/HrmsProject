@@ -1,5 +1,6 @@
 package kodlama.io.hrms.business.concretes;
 
+import kodlama.io.hrms.adapters.abstracts.CloudinaryService;
 import kodlama.io.hrms.adapters.concretes.CloudinaryServiceAdapter;
 import kodlama.io.hrms.business.abstracts.CvService;
 import kodlama.io.hrms.core.utilities.results.*;
@@ -11,13 +12,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class CvManager implements CvService {
 
     @Autowired
     private CvDao cvDao;
     @Autowired
-    private CloudinaryServiceAdapter cloudinaryServiceAdapter;
+    private CloudinaryService cloudinaryService;
 
     @Override
     public Result add(Cv cv) {
@@ -36,20 +39,14 @@ public class CvManager implements CvService {
     }
 
     @Override
-    public DataResult<String> uploadPhoto(int id, String filePath) {
-        File file = new File(filePath);
-        Object object = this.cloudinaryServiceAdapter.upload(file).get("secure_url");
-        if ((object == null)) {
-            return new ErrorDataResult<String>(null, "Failed to load photo! Not found image.");
-
-        } else if (!this.cvDao.existsById(id)) {
-            return new ErrorDataResult<String>(null, "Failed to load photo! Not found cv.");
-        } else {
-            String secure_url = object.toString();
-            Cv cv = this.cvDao.findById(id).get();
-            cv.setPhoto(secure_url);
-            this.cvDao.save(cv);
-            return new SuccessDataResult<String>(secure_url, "Photo upload successfully.");
-        }
+    public Result uploadPhoto(MultipartFile file, int cvId) {
+        Map<String, String> uploader = (Map<String, String>)
+                cloudinaryService.uploadPhoto(file).getData();
+        String imageUrl= uploader.get("url");
+        Cv cv = cvDao.getOne(cvId);
+        cv.setPhoto(imageUrl);
+        cvDao.save(cv);
+        return new SuccessResult("Kayıt Başarılı");
     }
+
 }
