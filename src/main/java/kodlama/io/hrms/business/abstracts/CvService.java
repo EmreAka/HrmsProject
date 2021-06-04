@@ -12,5 +12,5 @@ public interface CvService {
     Result add(Cv cv);
     DataResult<List<Cv>> getAll();
     DataResult<List<Cv>> findAllByEmployeeId(int employeeId);
-    public DataResult<String> uploadPhoto(int id, String file);
+    Result uploadPhoto(MultipartFile file, int cvId);
 }
