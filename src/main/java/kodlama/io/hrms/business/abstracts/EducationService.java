@@ -9,4 +9,5 @@ import java.util.List;
 public interface EducationService {
     Result add(Education education);
     DataResult<List<Education>> getAll();
+    DataResult<List<Education>> findAllByCvIdOrderByFinishDateDesc(int cvId);
 }

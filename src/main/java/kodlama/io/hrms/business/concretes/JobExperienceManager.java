@@ -28,4 +28,9 @@ public class JobExperienceManager implements JobExperienceService {
     public DataResult<List<JobExperience>> getAll() {
         return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.findAll(), "Job Experiences listed successfully");
     }
+
+    @Override
+    public DataResult<List<JobExperience>> findAllByCvIdOrderByFinishDateDesc(int cvId) {
+        return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.findAllByCv_IdOrderByFinishDateDesc(cvId), "Job Experiences listed by Cv id and ordered by finish dates successfully.");
+    }
 }

@@ -28,4 +28,9 @@ public class EducationManager implements EducationService {
     public DataResult<List<Education>> getAll() {
         return new SuccessDataResult<List<Education>>(this.educationDao.findAll(), "Educations listed successfully");
     }
+
+    @Override
+    public DataResult<List<Education>> findAllByCvIdOrderByFinishDateDesc(int cvId) {
+        return new SuccessDataResult<List<Education>>(this.educationDao.findAllByCv_IdOrderByFinishDateDesc(cvId), "Educations listed by cv id and ordered by finish dates successfully.");
+    }
 }
