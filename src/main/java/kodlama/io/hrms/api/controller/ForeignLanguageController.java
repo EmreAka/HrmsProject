@@ -19,6 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/foreignLanguages")
+@CrossOrigin
 public class ForeignLanguageController {
 
     @Autowired

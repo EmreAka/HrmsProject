@@ -20,6 +20,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/jobExperiences")
+@CrossOrigin
 public class JobExperienceController {
 
     @Autowired

@@ -19,6 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/TechnologyAndProgrammingLanguages")
+@CrossOrigin
 public class TechnologyAndProgrammingLanguageController {
 
     @Autowired
