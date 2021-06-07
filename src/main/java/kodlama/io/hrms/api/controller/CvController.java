@@ -21,6 +21,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/cvs")
+@CrossOrigin
 public class CvController {
 
     @Autowired
