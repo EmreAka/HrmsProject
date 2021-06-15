@@ -42,6 +42,12 @@ public class CvController {
         return this.cvService.findAllByEmployeeId(employeeId);
     }
 
+    @GetMapping("/findAllById")
+    public DataResult<Cv> findAllById(int id){
+        return this.cvService.findById(id);
+    }
+
+
     @PutMapping("/uploadImage")
     public Result uploadPhoto(@RequestBody MultipartFile file,@RequestParam int cvId) {
         return this.cvService.uploadPhoto(file, cvId);

@@ -30,6 +30,16 @@ public class TechnologyAndProgrammingLanguageController {
         return ResponseEntity.ok(this.technologyAndProgrammingLanguageService.add(technologyAndProgrammingLanguage));
     }
 
+    @GetMapping("/findById")
+    public DataResult<TechnologyAndProgrammingLanguage> findById(int id){
+        return this.technologyAndProgrammingLanguageService.findById(id);
+    }
+
+    @GetMapping("/findByCvId")
+    public DataResult<List<TechnologyAndProgrammingLanguage>> findAllByCvId(int id){
+        return this.technologyAndProgrammingLanguageService.findAllByCvId(id);
+    }
+
     @GetMapping("/getAll")
     public DataResult<List<TechnologyAndProgrammingLanguage>> getAll() {
         return this.technologyAndProgrammingLanguageService.getAll();

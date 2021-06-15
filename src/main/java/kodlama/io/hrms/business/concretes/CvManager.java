@@ -49,4 +49,9 @@ public class CvManager implements CvService {
         return new SuccessResult("Kayıt Başarılı");
     }
 
+    @Override
+    public DataResult<Cv> findById(int id) {
+        return new SuccessDataResult<Cv>(this.cvDao.findById(id), "Data listed");
+    }
+
 }

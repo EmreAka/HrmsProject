@@ -51,6 +51,12 @@ public class JobController {
 
     }
 
+    @GetMapping("/findAllByIdAndActiveTrueOrderByCreatedTimeDesc")
+    public DataResult<Job> findAllByIdAndActiveTrueOrderByCreatedTimeDesc(int id){
+        return this.jobService.findByIdAndActiveTrueOrderByCreatedTimeDesc(id);
+    }
+
+
     @PutMapping("/setValue")
     public Result setValue(@RequestParam int id,@RequestParam boolean value) {
         return this.jobService.setValue(id, value);

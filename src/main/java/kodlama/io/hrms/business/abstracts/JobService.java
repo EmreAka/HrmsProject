@@ -13,5 +13,6 @@ public interface JobService {
     DataResult<List<Job>> findAllByActiveTrue();
     DataResult<List<Job>> findAllByEmployerIdAndActiveTrue(int employerId);
     DataResult<List<Job>> findAllByActiveTrueOrderByCreatedTimeDesc();
+    DataResult<Job> findByIdAndActiveTrueOrderByCreatedTimeDesc(int id);
     Result setValue(int id, boolean value);
 }

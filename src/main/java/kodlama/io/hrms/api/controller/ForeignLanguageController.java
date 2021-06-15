@@ -30,6 +30,12 @@ public class ForeignLanguageController {
         return ResponseEntity.ok(this.foreignLangaugeService.add(foreignLanguage));
     }
 
+    @GetMapping("/findAllByCvId")
+    public DataResult<List<ForeignLanguage>> findAllByCvId(int id){
+        return this.foreignLangaugeService.findAllByCvId(id);
+    }
+
+
     @GetMapping("/getAll")
     public DataResult<List<ForeignLanguage>> getAll() {
         return this.foreignLangaugeService.getAll();
