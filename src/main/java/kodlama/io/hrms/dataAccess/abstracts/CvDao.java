@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CvDao extends JpaRepository<Cv, Integer> {
     List<Cv> findAllByEmployee_Id(int employeeId);
+    Cv findById(int id);
 }

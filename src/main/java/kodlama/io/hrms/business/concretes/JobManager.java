@@ -40,6 +40,11 @@ public class JobManager implements JobService {
     }
 
     @Override
+    public DataResult<Job> findByIdAndActiveTrueOrderByCreatedTimeDesc(int id) {
+        return new SuccessDataResult<Job>(this.jobDao.findByIdAndActiveTrueOrderByCreatedTimeDesc(id), "Jobs listed by id.");
+    }
+
+    @Override
     public Result setValue(int id, boolean value) {
         Job job = this.jobDao.findById(id).get();
         if (job == null) {

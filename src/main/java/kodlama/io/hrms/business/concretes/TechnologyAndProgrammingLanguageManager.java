@@ -28,4 +28,15 @@ public class TechnologyAndProgrammingLanguageManager implements TechnologyAndPro
     public DataResult<List<TechnologyAndProgrammingLanguage>> getAll() {
         return new SuccessDataResult<List<TechnologyAndProgrammingLanguage>>(this.technologyAndProgrammingLanguageDao.findAll(), "Technology or Programming Languages listed successfully");
     }
+
+    @Override
+    public DataResult<TechnologyAndProgrammingLanguage> findById(int id) {
+        return new SuccessDataResult<TechnologyAndProgrammingLanguage>(this.technologyAndProgrammingLanguageDao.findById(id), "Data listed");
+    }
+
+    @Override
+    public DataResult<List<TechnologyAndProgrammingLanguage>> findAllByCvId(int id) {
+        return new SuccessDataResult<List<TechnologyAndProgrammingLanguage>>(this.technologyAndProgrammingLanguageDao.findAllByCv_Id(id), "Data listed");
+    }
+
 }

@@ -9,4 +9,5 @@ import java.util.List;
 public interface ForeignLangaugeService {
     Result add(ForeignLanguage foreignLanguage);
     DataResult<List<ForeignLanguage>> getAll();
+    DataResult<List<ForeignLanguage>> findAllByCvId(int id);
 }
