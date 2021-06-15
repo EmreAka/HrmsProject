@@ -56,4 +56,12 @@ public class Job {
     @ManyToOne
     @JoinColumn(name = "employer_id")
     private Employer employer;
+
+    @ManyToOne()
+    @JoinColumn(name = "work_place_id")
+    private WorkPlace workPlace;
+
+    @ManyToOne()
+    @JoinColumn(name = "work_time_id")
+    private WorkTime workTime;
 }
