@@ -45,6 +45,9 @@ public class Job {
     @Column(name = "created_time")
     @CreationTimestamp
     private LocalDate createdTime;
+    @Column(name = "is_validated")
+    @NotNull
+    private boolean validate;
 
     //many to one
     @ManyToOne
