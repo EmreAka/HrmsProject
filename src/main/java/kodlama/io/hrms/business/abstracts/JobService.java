@@ -12,7 +12,11 @@ public interface JobService {
     Result add(Job job);
     DataResult<List<Job>> findAllByActiveTrue();
     DataResult<List<Job>> findAllByEmployerIdAndActiveTrue(int employerId);
+    DataResult<List<Job>> findAllByEmployer_IdAndActiveTrueAndValidateTrue(int employerId);
     DataResult<List<Job>> findAllByActiveTrueOrderByCreatedTimeDesc();
     DataResult<Job> findByIdAndActiveTrueOrderByCreatedTimeDesc(int id);
+    DataResult<List<Job>> findAllByActiveTrueAndValidateTrueOrderByCreatedTimeDesc();
+    DataResult<List<Job>> findAllByValidateFalseOrderByCreatedTimeDesc();
     Result setValue(int id, boolean value);
+    Result setValidateValue(int id, boolean value);
 }

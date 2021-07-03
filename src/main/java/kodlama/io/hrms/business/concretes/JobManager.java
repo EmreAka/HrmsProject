@@ -35,6 +35,11 @@ public class JobManager implements JobService {
     }
 
     @Override
+    public DataResult<List<Job>> findAllByEmployer_IdAndActiveTrueAndValidateTrue(int employerId) {
+        return new SuccessDataResult<List<Job>>(this.jobDao.findAllByEmployer_IdAndActiveTrueAndValidateTrue(employerId), "Jobs listed by employer.");
+    }
+
+    @Override
     public DataResult<List<Job>> findAllByActiveTrueOrderByCreatedTimeDesc() {
         return new SuccessDataResult<List<Job>>(this.jobDao.findAllByActiveTrueOrderByCreatedTimeDesc(), "Jobs listed by created times.");
     }
@@ -42,6 +47,16 @@ public class JobManager implements JobService {
     @Override
     public DataResult<Job> findByIdAndActiveTrueOrderByCreatedTimeDesc(int id) {
         return new SuccessDataResult<Job>(this.jobDao.findByIdAndActiveTrueOrderByCreatedTimeDesc(id), "Jobs listed by id.");
+    }
+
+    @Override
+    public DataResult<List<Job>> findAllByActiveTrueAndValidateTrueOrderByCreatedTimeDesc() {
+        return new SuccessDataResult<List<Job>>(this.jobDao.findAllByActiveTrueAndValidateTrueOrderByCreatedTimeDesc(),"Jobs listed");
+    }
+
+    @Override
+    public DataResult<List<Job>> findAllByValidateFalseOrderByCreatedTimeDesc() {
+        return new SuccessDataResult<List<Job>>(this.jobDao.findAllByValidateFalseOrderByCreatedTimeDesc(), "Jobs listed");
     }
 
     @Override
@@ -53,5 +68,13 @@ public class JobManager implements JobService {
         job.setActive(value);
         this.jobDao.save(job);
         return new SuccessResult("Value setted to " + value + " successfully.");
+    }
+
+    @Override
+    public Result setValidateValue(int id, boolean value) {
+        Job job = this.jobDao.findById(id).get();
+        job.setValidate(value);
+        this.jobDao.save(job);
+        return new SuccessResult("Value setted to " + value + " successfully");
     }
 }

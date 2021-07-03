@@ -45,6 +45,11 @@ public class JobController {
         return this.jobService.findAllByEmployerIdAndActiveTrue(employerId);
     }
 
+    @GetMapping("/findAllByEmployerIdAndActiveTrueAndValidateTrue")
+    public DataResult<List<Job>> findAllByEmployer_IdAndActiveTrueAndValidateTrue(@RequestParam int employerId){
+        return this.jobService.findAllByEmployer_IdAndActiveTrueAndValidateTrue(employerId);
+    }
+
     @GetMapping("/findAllByActiveTrueOrderByCreatedTimeDesc")
     public DataResult<List<Job>> findAllByActiveTrueOrderByCreatedTimeDesc() {
         return this.jobService.findAllByActiveTrueOrderByCreatedTimeDesc();
@@ -56,10 +61,24 @@ public class JobController {
         return this.jobService.findByIdAndActiveTrueOrderByCreatedTimeDesc(id);
     }
 
+    @GetMapping("/findAllByActiveTrueAndValidateTrueOrderByCreatedTimeDesc")
+    public DataResult<List<Job>> findAllByActiveTrueAndValidateTrueOrderByCreatedTimeDesc(){
+        return this.jobService.findAllByActiveTrueAndValidateTrueOrderByCreatedTimeDesc();
+    }
+
+    @GetMapping("/findAllByValidateFalseOrderByCreatedTimeDesc")
+    public DataResult<List<Job>> findAllByValidateFalseOrderByCreatedTimeDesc(){
+        return this.jobService.findAllByValidateFalseOrderByCreatedTimeDesc();
+    }
 
     @PutMapping("/setValue")
     public Result setValue(@RequestParam int id,@RequestParam boolean value) {
         return this.jobService.setValue(id, value);
+    }
+
+    @PutMapping("/setValidateValue")
+    public Result setValidateValue(@RequestParam int id,@RequestParam boolean value){
+        return this.jobService.setValidateValue(id, value);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
