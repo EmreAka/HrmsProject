@@ -1,6 +1,7 @@
 package kodlama.io.hrms.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 
 @Data
@@ -67,4 +69,8 @@ public class Job {
     @ManyToOne()
     @JoinColumn(name = "work_time_id")
     private WorkTime workTime;
+
+    @OneToMany(mappedBy = "job")
+    @JsonIgnore
+    private List<Favorite> favorite;
 }
