@@ -41,4 +41,8 @@ public class Employee extends User{
     @JsonIgnore
     @OneToMany(mappedBy = "employee")
     private List<Cv> cvs;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "employee")
+    private List<Favorite> favorites;
 }
