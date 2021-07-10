@@ -3,6 +3,8 @@ package kodlama.io.hrms.api.controller;
 import kodlama.io.hrms.business.abstracts.FavoriteService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.ErrorDataResult;
+import kodlama.io.hrms.core.utilities.results.Result;
+import kodlama.io.hrms.core.utilities.results.SuccessResult;
 import kodlama.io.hrms.entities.concretes.Favorite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +28,16 @@ public class FavoriteController {
     @PostMapping("/add")
     public ResponseEntity<?> add(@RequestBody Favorite favorite) {
         return ResponseEntity.ok(this.favoriteService.add(favorite));
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> delete(@RequestBody Favorite favorite) {
+        return ResponseEntity.ok(this.favoriteService.delete(favorite));
+    }
+
+    @DeleteMapping("/deleteById")
+    public Result deleteById(@RequestParam int id) {
+        return this.favoriteService.deleteById(id);
     }
 
     @GetMapping("/findAllByEmployeeId")

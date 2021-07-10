@@ -28,4 +28,16 @@ public class FavoriteManager implements FavoriteService {
         this.favoriteDao.save(favorite);
         return new SuccessResult("Favorite saved successfully");
     }
+
+    @Override
+    public Result delete(Favorite favorite) {
+        this.favoriteDao.delete(favorite);
+        return new SuccessResult("Favorite deleted successfully");
+    }
+
+    @Override
+    public Result deleteById(int id) {
+        this.favoriteDao.deleteById(id);
+        return new SuccessResult("Favorite deleted successfully");
+    }
 }
