@@ -9,4 +9,5 @@ import java.util.List;
 public interface FavoriteDao extends JpaRepository<Favorite, Integer> {
     List<Favorite> findAllByEmployee_Id(int id);
     Result deleteById(int id);
+    Boolean existsByJob_Id(int id);
 }
