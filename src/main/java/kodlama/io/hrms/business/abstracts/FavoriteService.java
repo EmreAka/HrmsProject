@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface FavoriteService {
     DataResult<List<Favorite>> findAllByEmployeeId(int id);
+    DataResult<List<Favorite>> findAll();
     Result add(Favorite favorite);
     Result delete(Favorite favorite);
     Result deleteById(int id);

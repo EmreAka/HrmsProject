@@ -1,5 +1,6 @@
 package kodlama.io.hrms.business.concretes;
 
+import kodlama.io.hrms.business.abstracts.FavoriteCheckService;
 import kodlama.io.hrms.business.abstracts.FavoriteService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.Result;
@@ -17,6 +18,8 @@ public class FavoriteManager implements FavoriteService {
 
     @Autowired
     private FavoriteDao favoriteDao;
+    @Autowired
+    private FavoriteCheckService favoriteCheckService;
 
     @Override
     public DataResult<List<Favorite>> findAllByEmployeeId(int id) {
@@ -24,7 +27,15 @@ public class FavoriteManager implements FavoriteService {
     }
 
     @Override
+    public DataResult<List<Favorite>> findAll() {
+        return new SuccessDataResult<List<Favorite>>(this.favoriteDao.findAll(), "All Favorites listed successfully.");
+    }
+
+    @Override
     public Result add(Favorite favorite) {
+        if (!this.favoriteCheckService.checkFavorite(favorite).isSuccess()){
+            return this.favoriteCheckService.checkFavorite(favorite);
+        }
         this.favoriteDao.save(favorite);
         return new SuccessResult("Favorite saved successfully");
     }

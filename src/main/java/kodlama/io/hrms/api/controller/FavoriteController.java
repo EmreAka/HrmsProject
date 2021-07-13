@@ -45,6 +45,11 @@ public class FavoriteController {
         return this.favoriteService.findAllByEmployeeId(id);
     }
 
+    @GetMapping("/findAll")
+    public DataResult<List<Favorite>> findAll() {
+        return this.favoriteService.findAll();
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDataResult<Object> handleValidationException(MethodArgumentNotValidException exceptions) {
