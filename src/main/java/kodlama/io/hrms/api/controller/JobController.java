@@ -40,11 +40,6 @@ public class JobController {
         return this.jobService.findAllByActiveTrue();
     }
 
-    @GetMapping("/getAllByPageNoAndPageSize")
-    public DataResult<List<Job>> getAll(@RequestParam int pageNo,@RequestParam int pageSize) {
-        return this.jobService.getAll(pageNo, pageSize);
-    }
-
     @GetMapping("/findAllByEmployerIdAndActiveTrue")
     public DataResult<List<Job>> findAllByEmployerIdAndActiveTrue(@RequestParam int employerId) {
         return this.jobService.findAllByEmployerIdAndActiveTrue(employerId);

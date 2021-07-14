@@ -17,13 +17,7 @@ public class JobManager implements JobService {
 
     @Override
     public DataResult<List<Job>> getAll() {
-        return new SuccessDataResult<List<Job>>((List<Job>) this.jobDao.findAll(), "Jobs listed successfully.");
-    }
-
-    @Override
-    public DataResult<List<Job>> getAll(int pageNo, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
-        return new SuccessDataResult<List<Job>>(this.jobDao.findAllByActiveTrueAndValidateTrueOrderByCreatedTimeDesc(pageable), "Jobs listed successfully.");
+        return new SuccessDataResult<List<Job>>(this.jobDao.findAll(), "Jobs listed successfully.");
     }
 
     @Override
