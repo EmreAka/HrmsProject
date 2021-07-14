@@ -5,6 +5,8 @@ import kodlama.io.hrms.core.utilities.results.*;
 import kodlama.io.hrms.dataAccess.abstracts.JobDao;
 import kodlama.io.hrms.entities.concretes.Job;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +17,13 @@ public class JobManager implements JobService {
 
     @Override
     public DataResult<List<Job>> getAll() {
-        return new SuccessDataResult<List<Job>>(this.jobDao.findAll(), "Jobs listed successfully.");
+        return new SuccessDataResult<List<Job>>((List<Job>) this.jobDao.findAll(), "Jobs listed successfully.");
+    }
+
+    @Override
+    public DataResult<List<Job>> getAll(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        return new SuccessDataResult<List<Job>>(this.jobDao.findAllByActiveTrueAndValidateTrueOrderByCreatedTimeDesc(pageable), "Jobs listed successfully.");
     }
 
     @Override
