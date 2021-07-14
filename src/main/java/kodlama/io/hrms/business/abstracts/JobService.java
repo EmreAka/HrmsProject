@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface JobService {
     DataResult<List<Job>> getAll();
+    DataResult<List<Job>> getAll(int pageNo, int pageSize);
     Result add(Job job);
     DataResult<List<Job>> findAllByActiveTrue();
     DataResult<List<Job>> findAllByEmployerIdAndActiveTrue(int employerId);
