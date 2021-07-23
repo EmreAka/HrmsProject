@@ -30,6 +30,16 @@ public class ForeignLanguageController {
         return ResponseEntity.ok(this.foreignLangaugeService.add(foreignLanguage));
     }
 
+    @DeleteMapping("/deleteById")
+    public ResponseEntity<?> deleteById(@RequestParam int id) {
+        return ResponseEntity.ok(this.foreignLangaugeService.deleteById(id));
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> delete(@RequestBody ForeignLanguage foreignLanguage){
+        return ResponseEntity.ok(this.foreignLangaugeService.delete(foreignLanguage));
+    }
+
     @GetMapping("/findAllByCvId")
     public DataResult<List<ForeignLanguage>> findAllByCvId(int id){
         return this.foreignLangaugeService.findAllByCvId(id);

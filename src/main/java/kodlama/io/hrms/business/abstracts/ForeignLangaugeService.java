@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface ForeignLangaugeService {
     Result add(ForeignLanguage foreignLanguage);
+    Result deleteById(int id);
+    Result delete(ForeignLanguage foreignLanguage);
     DataResult<List<ForeignLanguage>> getAll();
     DataResult<List<ForeignLanguage>> findAllByCvId(int id);
 }

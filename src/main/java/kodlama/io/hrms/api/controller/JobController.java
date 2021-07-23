@@ -71,6 +71,11 @@ public class JobController {
         return this.jobService.findAllByValidateFalseOrderByCreatedTimeDesc();
     }
 
+    @GetMapping("/findAllByFilter")
+    public DataResult<List<Job>> findAllByActiveTrueAndValidateTrueAndWorkPlaceAndWorkTimeAndCity(int workPlaceId, int workTimeId, int cityId) {
+        return this.jobService.findAllByActiveTrueAndValidateTrueAndWorkPlace_IdAndWorkTime_IdAndCity_IdOrderByCreatedTimeDesc(workPlaceId, workTimeId, cityId);
+    }
+
     @PutMapping("/setValue")
     public Result setValue(@RequestParam int id,@RequestParam boolean value) {
         return this.jobService.setValue(id, value);
