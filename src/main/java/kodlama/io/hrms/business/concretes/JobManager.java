@@ -62,6 +62,11 @@ public class JobManager implements JobService {
     }
 
     @Override
+    public DataResult<List<Job>> findAllByActiveTrueAndValidateTrueAndWorkPlace_IdAndWorkTime_IdAndCity_IdOrderByCreatedTimeDesc(int workPlaceId, int workTimeId, int cityId) {
+        return new SuccessDataResult<List<Job>>(this.jobDao.findAllByActiveTrueAndValidateTrueAndWorkPlace_IdAndWorkTime_IdAndCity_IdOrderByCreatedTimeDesc(workPlaceId, workTimeId, cityId));
+    }
+
+    @Override
     public Result setValue(int id, boolean value) {
         Job job = this.jobDao.findById(id).get();
         if (job == null) {

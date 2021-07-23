@@ -17,6 +17,7 @@ public interface JobService {
     DataResult<Job> findByIdAndActiveTrueOrderByCreatedTimeDesc(int id);
     DataResult<List<Job>> findAllByActiveTrueAndValidateTrueOrderByCreatedTimeDesc();
     DataResult<List<Job>> findAllByValidateFalseOrderByCreatedTimeDesc();
+    DataResult<List<Job>> findAllByActiveTrueAndValidateTrueAndWorkPlace_IdAndWorkTime_IdAndCity_IdOrderByCreatedTimeDesc(int workPlaceId, int workTimeId, int cityId);
     Result setValue(int id, boolean value);
     Result setValidateValue(int id, boolean value);
 }

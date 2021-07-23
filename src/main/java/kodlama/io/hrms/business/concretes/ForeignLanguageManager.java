@@ -24,6 +24,18 @@ public class ForeignLanguageManager implements ForeignLangaugeService {
     }
 
     @Override
+    public Result deleteById(int id) {
+        this.foreignLanguageDao.deleteById(id);
+        return new SuccessResult("Foreign Language is deleted successfully");
+    }
+
+    @Override
+    public Result delete(ForeignLanguage foreignLanguage) {
+        this.foreignLanguageDao.delete(foreignLanguage);
+        return new SuccessResult("Foreign Language is deleted successfully");
+    }
+
+    @Override
     public DataResult<List<ForeignLanguage>> getAll() {
         return new SuccessDataResult<List<ForeignLanguage>>(this.foreignLanguageDao.findAll(), "Foreign languages listed successfully");
     }

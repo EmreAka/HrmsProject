@@ -13,6 +13,7 @@ public interface JobDao extends JpaRepository<Job, Integer> {
     List<Job> findAllByEmployer_IdAndActiveTrueAndValidateTrue(int employerId);
     List<Job> findAllByActiveTrueOrderByCreatedTimeDesc();
     List<Job> findAllByActiveTrueAndValidateTrueOrderByCreatedTimeDesc();
+    List<Job> findAllByActiveTrueAndValidateTrueAndWorkPlace_IdAndWorkTime_IdAndCity_IdOrderByCreatedTimeDesc(int workPlaceId, int WorkTimeId, int cityId);
 //    List<Job> findAllByActiveTrueAndValidateTrueOrderByCreatedTimeDesc(Pageable pageable);
     List<Job> findAllByValidateFalseOrderByCreatedTimeDesc();
     Job findByIdAndActiveTrueOrderByCreatedTimeDesc(int id);
