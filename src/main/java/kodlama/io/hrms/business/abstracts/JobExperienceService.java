@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface JobExperienceService {
     Result add(JobExperience jobExperience);
+    Result deleteById(int id);
     DataResult<List<JobExperience>> getAll();
     DataResult<List<JobExperience>> findAllByCvIdOrderByFinishDateDesc(int cvId);
 }

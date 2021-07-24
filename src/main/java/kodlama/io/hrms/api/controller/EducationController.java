@@ -30,6 +30,11 @@ public class EducationController {
         return ResponseEntity.ok(this.educationService.add(education));
     }
 
+    @DeleteMapping("/deleteById")
+    public ResponseEntity<?> deleteById(@RequestParam int id) {
+        return ResponseEntity.ok(this.educationService.deleteById(id));
+    }
+
     @GetMapping("/getAll")
     public DataResult<List<Education>> getAll() {
         return this.educationService.getAll();

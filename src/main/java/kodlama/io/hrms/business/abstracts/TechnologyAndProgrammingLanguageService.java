@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface TechnologyAndProgrammingLanguageService {
     Result add(TechnologyAndProgrammingLanguage technologyAndProgrammingLanguage);
+    Result deleteById(int id);
     DataResult<List<TechnologyAndProgrammingLanguage>> getAll();
     DataResult<TechnologyAndProgrammingLanguage> findById(int id);
     DataResult<List<TechnologyAndProgrammingLanguage>> findAllByCvId(int id);

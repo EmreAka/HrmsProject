@@ -25,6 +25,12 @@ public class TechnologyAndProgrammingLanguageManager implements TechnologyAndPro
     }
 
     @Override
+    public Result deleteById(int id) {
+        this.technologyAndProgrammingLanguageDao.deleteById(id);
+        return new SuccessResult("Technology or Programming Language deleted successfully");
+    }
+
+    @Override
     public DataResult<List<TechnologyAndProgrammingLanguage>> getAll() {
         return new SuccessDataResult<List<TechnologyAndProgrammingLanguage>>(this.technologyAndProgrammingLanguageDao.findAll(), "Technology or Programming Languages listed successfully");
     }
