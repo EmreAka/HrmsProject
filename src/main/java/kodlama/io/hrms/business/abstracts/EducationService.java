@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface EducationService {
     Result add(Education education);
+    Result deleteById(int id);
     DataResult<List<Education>> getAll();
     DataResult<List<Education>> findAllByCvIdOrderByFinishDateDesc(int cvId);
 }

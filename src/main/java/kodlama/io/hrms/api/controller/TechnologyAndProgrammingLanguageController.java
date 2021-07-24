@@ -1,5 +1,6 @@
 package kodlama.io.hrms.api.controller;
 
+import io.swagger.models.Response;
 import kodlama.io.hrms.business.abstracts.TechnologyAndProgrammingLanguageService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.ErrorDataResult;
@@ -28,6 +29,11 @@ public class TechnologyAndProgrammingLanguageController {
     @PostMapping("/add")
     public ResponseEntity<?> add(@Valid @RequestBody TechnologyAndProgrammingLanguage technologyAndProgrammingLanguage) {
         return ResponseEntity.ok(this.technologyAndProgrammingLanguageService.add(technologyAndProgrammingLanguage));
+    }
+
+    @DeleteMapping("/deleteById")
+    public ResponseEntity<?> deleteById(@RequestParam int id){
+        return ResponseEntity.ok(this.technologyAndProgrammingLanguageService.deleteById(id));
     }
 
     @GetMapping("/findById")

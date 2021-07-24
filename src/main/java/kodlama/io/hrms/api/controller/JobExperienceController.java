@@ -31,6 +31,11 @@ public class JobExperienceController {
         return ResponseEntity.ok(this.jobExperienceService.add(jobExperience));
     }
 
+    @DeleteMapping("/deleteById")
+    public ResponseEntity<?> deleteById(@RequestParam int id){
+        return ResponseEntity.ok(this.jobExperienceService.deleteById(id));
+    }
+
     @GetMapping("/getAll")
     public DataResult<List<JobExperience>> getAll() {
         return this.jobExperienceService.getAll();

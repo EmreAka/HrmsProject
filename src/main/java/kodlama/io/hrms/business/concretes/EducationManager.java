@@ -25,6 +25,12 @@ public class EducationManager implements EducationService {
     }
 
     @Override
+    public Result deleteById(int id) {
+        this.educationDao.deleteById(id);
+        return new SuccessResult("Education deleted successfully");
+    }
+
+    @Override
     public DataResult<List<Education>> getAll() {
         return new SuccessDataResult<List<Education>>(this.educationDao.findAll(), "Educations listed successfully");
     }

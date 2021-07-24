@@ -25,6 +25,12 @@ public class JobExperienceManager implements JobExperienceService {
     }
 
     @Override
+    public Result deleteById(int id) {
+        this.jobExperienceDao.deleteById(id);
+        return new SuccessResult("Job Experience deleted successfully");
+    }
+
+    @Override
     public DataResult<List<JobExperience>> getAll() {
         return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.findAll(), "Job Experiences listed successfully");
     }
