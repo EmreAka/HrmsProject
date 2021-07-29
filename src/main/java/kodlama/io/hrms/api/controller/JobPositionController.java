@@ -21,9 +21,8 @@ import java.util.Map;
 public class JobPositionController {
     //@Autowired diyerek constructor oluşturmasak dahi çalışır fakat...
     //her değişken için @Autowired yazmamız gerekir
-    private JobPositionService jobPositionService;
+    private final JobPositionService jobPositionService;
 
-    @Autowired
     public JobPositionController(JobPositionService jobPositionService) {
         this.jobPositionService = jobPositionService;
     }

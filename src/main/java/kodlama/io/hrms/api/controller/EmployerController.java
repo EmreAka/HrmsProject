@@ -22,9 +22,8 @@ import java.util.Map;
 @CrossOrigin
 public class EmployerController {
 
-    private EmployerService employerService;
+    private final EmployerService employerService;
 
-    @Autowired
     public EmployerController(EmployerService employerService) {
         this.employerService = employerService;
     }

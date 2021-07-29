@@ -23,8 +23,11 @@ import java.util.Map;
 @CrossOrigin
 public class JobExperienceController {
 
-    @Autowired
-    private JobExperienceService jobExperienceService;
+    private final JobExperienceService jobExperienceService;
+
+    public JobExperienceController(JobExperienceService jobExperienceService) {
+        this.jobExperienceService = jobExperienceService;
+    }
 
     @PostMapping("/add")
     public ResponseEntity<?> add(@Valid @RequestBody JobExperience jobExperience) {

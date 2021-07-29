@@ -23,8 +23,12 @@ import java.util.Map;
 @CrossOrigin
 public class TechnologyAndProgrammingLanguageController {
 
-    @Autowired
-    private TechnologyAndProgrammingLanguageService technologyAndProgrammingLanguageService;
+    private final TechnologyAndProgrammingLanguageService technologyAndProgrammingLanguageService;
+
+    public TechnologyAndProgrammingLanguageController(TechnologyAndProgrammingLanguageService
+                                                              technologyAndProgrammingLanguageService) {
+        this.technologyAndProgrammingLanguageService = technologyAndProgrammingLanguageService;
+    }
 
     @PostMapping("/add")
     public ResponseEntity<?> add(@Valid @RequestBody TechnologyAndProgrammingLanguage technologyAndProgrammingLanguage) {
