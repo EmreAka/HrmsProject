@@ -13,9 +13,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class ForeignLanguageManager implements ForeignLangaugeService {
-    @Autowired
-    private ForeignLanguageDao foreignLanguageDao;
 
+    private final ForeignLanguageDao foreignLanguageDao;
+
+    public ForeignLanguageManager(ForeignLanguageDao foreignLanguageDao) {
+        this.foreignLanguageDao = foreignLanguageDao;
+    }
 
     @Override
     public Result add(ForeignLanguage foreignLanguage) {

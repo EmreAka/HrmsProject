@@ -12,8 +12,11 @@ import java.util.List;
 @Service
 public class CityManager implements CityService {
 
-    @Autowired
-    private CityDao cityDao;
+    private final CityDao cityDao;
+
+    public CityManager(CityDao cityDao) {
+        this.cityDao = cityDao;
+    }
 
     @Override
     public DataResult<List<City>> findAll() {

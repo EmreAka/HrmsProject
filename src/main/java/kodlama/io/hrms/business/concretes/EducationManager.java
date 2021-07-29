@@ -7,16 +7,17 @@ import kodlama.io.hrms.core.utilities.results.SuccessDataResult;
 import kodlama.io.hrms.core.utilities.results.SuccessResult;
 import kodlama.io.hrms.dataAccess.abstracts.EducationDao;
 import kodlama.io.hrms.entities.concretes.Education;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class EducationManager implements EducationService {
 
-    @Autowired
-    private EducationDao educationDao;
+    private final EducationDao educationDao;
 
+    public EducationManager(EducationDao educationDao) {
+        this.educationDao = educationDao;
+    }
 
     @Override
     public Result add(Education education) {
@@ -32,11 +33,13 @@ public class EducationManager implements EducationService {
 
     @Override
     public DataResult<List<Education>> getAll() {
-        return new SuccessDataResult<List<Education>>(this.educationDao.findAll(), "Educations listed successfully");
+        return new SuccessDataResult<List<Education>>(this.educationDao.findAll(),
+                "Educations listed successfully");
     }
 
     @Override
     public DataResult<List<Education>> findAllByCvIdOrderByFinishDateDesc(int cvId) {
-        return new SuccessDataResult<List<Education>>(this.educationDao.findAllByCv_IdOrderByFinishDateDesc(cvId), "Educations listed by cv id and ordered by finish dates successfully.");
+        return new SuccessDataResult<List<Education>>(this.educationDao.findAllByCv_IdOrderByFinishDateDesc(cvId),
+                "Educations listed by cv id and ordered by finish dates successfully.");
     }
 }

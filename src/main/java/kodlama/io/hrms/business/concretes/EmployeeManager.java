@@ -12,10 +12,9 @@ import java.util.List;
 @Service
 public class EmployeeManager implements EmployeeService {
 
-    private EmployeeDao employeeDao;
-    private EmployeeCheckService employeeCheckService;
+    private final EmployeeDao employeeDao;
+    private final EmployeeCheckService employeeCheckService;
 
-    @Autowired
     public EmployeeManager(EmployeeDao employeeDao, EmployeeCheckService employeeCheckService) {
         this.employeeDao = employeeDao;
         this.employeeCheckService = employeeCheckService;

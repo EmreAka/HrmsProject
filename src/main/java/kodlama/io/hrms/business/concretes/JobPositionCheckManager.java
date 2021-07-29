@@ -12,9 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class JobPositionCheckManager implements JobPositionCheckService {
 
-    private JobPositionDao jobPositionDao;
+    private final JobPositionDao jobPositionDao;
 
-    @Autowired
     public JobPositionCheckManager(JobPositionDao jobPositionDao) {
         this.jobPositionDao = jobPositionDao;
     }

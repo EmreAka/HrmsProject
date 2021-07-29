@@ -15,12 +15,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmployeeCheckManager implements EmployeeCheckService {
 
-    private UserDao userDao;
-    private EmployeeDao employeeDao;
-    private MailValidator mailValidator;
-    private MernisService mernisService;
+    private final UserDao userDao;
+    private final EmployeeDao employeeDao;
+    private final MailValidator mailValidator;
+    private final MernisService mernisService;
 
-    @Autowired
     public EmployeeCheckManager(UserDao userDao, EmployeeDao employeeDao, MailValidator mailValidator, MernisService mernisService) {
         this.userDao = userDao;
         this.employeeDao = employeeDao;
