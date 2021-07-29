@@ -13,10 +13,9 @@ import java.util.List;
 @Service
 public class JobPositionManager implements JobPositionService {
 
-    private JobPositionDao jobPositionDao;
-    private JobPositionCheckService jobPositionCheckService;
+    private final JobPositionDao jobPositionDao;
+    private final JobPositionCheckService jobPositionCheckService;
 
-    @Autowired
     public JobPositionManager(JobPositionDao jobPositionDao, JobPositionCheckService jobPositionCheckService) {
         this.jobPositionDao = jobPositionDao;
         this.jobPositionCheckService = jobPositionCheckService;

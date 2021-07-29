@@ -16,10 +16,9 @@ import java.util.List;
 @Service
 public class EmployerManager implements EmployerService {
 
-    private EmployerDao employerDao;
-    private EmployerCheckService employerCheckService;
+    private final EmployerDao employerDao;
+    private final EmployerCheckService employerCheckService;
 
-    @Autowired
     public EmployerManager(EmployerDao employerDao, EmployerCheckService employerCheckService) {
         this.employerDao = employerDao;
         this.employerCheckService = employerCheckService;

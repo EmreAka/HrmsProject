@@ -12,9 +12,11 @@ import java.util.List;
 @Service
 public class WorkPlaceManager implements WorkPlaceService {
 
-    @Autowired
-    private WorkPlaceDao workPlaceDao;
+    private final WorkPlaceDao workPlaceDao;
 
+    public WorkPlaceManager(WorkPlaceDao workPlaceDao) {
+        this.workPlaceDao = workPlaceDao;
+    }
 
     @Override
     public DataResult<List<WorkPlace>> findAll() {

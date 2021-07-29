@@ -12,8 +12,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class JobManager implements JobService {
-    @Autowired
-    private JobDao jobDao;
+
+    private final JobDao jobDao;
+
+    public JobManager(JobDao jobDao) {
+        this.jobDao = jobDao;
+    }
 
     @Override
     public DataResult<List<Job>> getAll() {

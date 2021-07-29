@@ -15,8 +15,11 @@ import java.util.List;
 @Service
 public class JobExperienceManager implements JobExperienceService {
 
-    @Autowired
-    private JobExperienceDao jobExperienceDao;
+    private final JobExperienceDao jobExperienceDao;
+
+    public JobExperienceManager(JobExperienceDao jobExperienceDao) {
+        this.jobExperienceDao = jobExperienceDao;
+    }
 
     @Override
     public Result add(JobExperience jobExperience) {

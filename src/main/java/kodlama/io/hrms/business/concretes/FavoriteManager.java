@@ -16,10 +16,13 @@ import java.util.List;
 @Service
 public class FavoriteManager implements FavoriteService {
 
-    @Autowired
-    private FavoriteDao favoriteDao;
-    @Autowired
-    private FavoriteCheckService favoriteCheckService;
+    private final FavoriteDao favoriteDao;
+    private final FavoriteCheckService favoriteCheckService;
+
+    public FavoriteManager(FavoriteDao favoriteDao, FavoriteCheckService favoriteCheckService) {
+        this.favoriteDao = favoriteDao;
+        this.favoriteCheckService = favoriteCheckService;
+    }
 
     @Override
     public DataResult<List<Favorite>> findAllByEmployeeId(int id) {

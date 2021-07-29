@@ -13,8 +13,11 @@ import java.util.List;
 @Service
 public class WorkTimeManager implements WorkTimeService {
 
-    @Autowired
-    private WorkTimeDao workTimeDao;
+    private final WorkTimeDao workTimeDao;
+
+    public WorkTimeManager(WorkTimeDao workTimeDao) {
+        this.workTimeDao = workTimeDao;
+    }
 
     @Override
     public DataResult<List<WorkTime>> findAll() {

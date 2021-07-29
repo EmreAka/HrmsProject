@@ -14,9 +14,12 @@ import java.util.List;
 @Service
 public class TechnologyAndProgrammingLanguageManager implements TechnologyAndProgrammingLanguageService {
 
-    @Autowired
-    private TechnologyAndProgrammingLanguageDao technologyAndProgrammingLanguageDao;
+    private final TechnologyAndProgrammingLanguageDao technologyAndProgrammingLanguageDao;
 
+    public TechnologyAndProgrammingLanguageManager(TechnologyAndProgrammingLanguageDao
+                                                           technologyAndProgrammingLanguageDao) {
+        this.technologyAndProgrammingLanguageDao = technologyAndProgrammingLanguageDao;
+    }
 
     @Override
     public Result add(TechnologyAndProgrammingLanguage technologyAndProgrammingLanguage) {

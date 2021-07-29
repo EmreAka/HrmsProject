@@ -17,10 +17,13 @@ import java.util.Map;
 @Service
 public class CvManager implements CvService {
 
-    @Autowired
-    private CvDao cvDao;
-    @Autowired
-    private CloudinaryService cloudinaryService;
+    private final CvDao cvDao;
+    private final CloudinaryService cloudinaryService;
+
+    public CvManager(CvDao cvDao, CloudinaryService cloudinaryService) {
+        this.cvDao = cvDao;
+        this.cloudinaryService = cloudinaryService;
+    }
 
     @Override
     public Result add(Cv cv) {

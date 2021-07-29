@@ -11,8 +11,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FavoriteCheckManager implements FavoriteCheckService {
-    @Autowired
-    private FavoriteDao favoriteDao;
+
+    private final FavoriteDao favoriteDao;
+
+    public FavoriteCheckManager(FavoriteDao favoriteDao) {
+        this.favoriteDao = favoriteDao;
+    }
 
     @Override
     public Result checkFavorite(Favorite favorite) {
