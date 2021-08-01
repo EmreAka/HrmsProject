@@ -22,8 +22,11 @@ import java.util.Map;
 @CrossOrigin
 public class JobController {
 
-    @Autowired
-    private JobService jobService;
+    private final JobService jobService;
+
+    public JobController(JobService jobService) {
+        this.jobService = jobService;
+    }
 
     @GetMapping("/getall")
     public DataResult<List<Job>> getAll() {

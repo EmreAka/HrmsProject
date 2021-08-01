@@ -4,9 +4,7 @@ import kodlama.io.hrms.business.abstracts.FavoriteService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.ErrorDataResult;
 import kodlama.io.hrms.core.utilities.results.Result;
-import kodlama.io.hrms.core.utilities.results.SuccessResult;
 import kodlama.io.hrms.entities.concretes.Favorite;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -22,8 +20,11 @@ import java.util.Map;
 @CrossOrigin
 public class FavoriteController {
 
-    @Autowired
-    private FavoriteService favoriteService;
+    private final FavoriteService favoriteService;
+
+    public FavoriteController(FavoriteService favoriteService) {
+        this.favoriteService = favoriteService;
+    }
 
     @PostMapping("/add")
     public ResponseEntity<?> add(@RequestBody Favorite favorite) {

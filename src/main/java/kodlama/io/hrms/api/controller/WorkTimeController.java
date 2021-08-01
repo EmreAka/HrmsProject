@@ -16,8 +16,11 @@ import java.util.List;
 @CrossOrigin
 public class WorkTimeController {
 
-    @Autowired
-    private WorkTimeService workTimeService;
+    private final WorkTimeService workTimeService;
+
+    public WorkTimeController(WorkTimeService workTimeService) {
+        this.workTimeService = workTimeService;
+    }
 
     @GetMapping("/findAll")
     public DataResult<List<WorkTime>> findAll(){

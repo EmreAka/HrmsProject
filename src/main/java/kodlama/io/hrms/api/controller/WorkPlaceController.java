@@ -16,8 +16,11 @@ import java.util.List;
 @CrossOrigin
 public class WorkPlaceController {
 
-    @Autowired
-    private WorkPlaceService workPlaceService;
+    private final WorkPlaceService workPlaceService;
+
+    public WorkPlaceController(WorkPlaceService workPlaceService) {
+        this.workPlaceService = workPlaceService;
+    }
 
     @GetMapping("/findAll")
     public DataResult<List<WorkPlace>> findAll(){

@@ -3,9 +3,7 @@ package kodlama.io.hrms.api.controller;
 import kodlama.io.hrms.business.abstracts.ForeignLangaugeService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.ErrorDataResult;
-import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.entities.concretes.ForeignLanguage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -22,8 +20,11 @@ import java.util.Map;
 @CrossOrigin
 public class ForeignLanguageController {
 
-    @Autowired
-    private ForeignLangaugeService foreignLangaugeService;
+    private final ForeignLangaugeService foreignLangaugeService;
+
+    public ForeignLanguageController(ForeignLangaugeService foreignLangaugeService) {
+        this.foreignLangaugeService = foreignLangaugeService;
+    }
 
     @PostMapping("/add")
     public ResponseEntity<?> add(@Valid @RequestBody ForeignLanguage foreignLanguage) {

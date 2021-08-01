@@ -5,7 +5,6 @@ import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.ErrorDataResult;
 import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.entities.concretes.Cv;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +22,11 @@ import java.util.Map;
 @CrossOrigin
 public class CvController {
 
-    @Autowired
-    private CvService cvService;
+    private final CvService cvService;
+
+    public CvController(CvService cvService) {
+        this.cvService = cvService;
+    }
 
     @PostMapping("/add")
     public ResponseEntity<?> add(@Valid @RequestBody Cv cv) {

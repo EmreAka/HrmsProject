@@ -3,9 +3,7 @@ package kodlama.io.hrms.api.controller;
 import kodlama.io.hrms.business.abstracts.EducationService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.ErrorDataResult;
-import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.entities.concretes.Education;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -22,8 +20,11 @@ import java.util.Map;
 @CrossOrigin
 public class EducationController {
 
-    @Autowired
-    private EducationService educationService;
+    private final EducationService educationService;
+
+    public EducationController(EducationService educationService) {
+        this.educationService = educationService;
+    }
 
     @PostMapping("/add")
     public ResponseEntity<?> add(@Valid @RequestBody Education education) {
